@@ -6,13 +6,13 @@ import { Play, ChevronLeft, ChevronRight } from 'lucide-react';
 const PhotoGallery = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  // Example content - replace with your actual content
+  
   const content = [
     {
       type: 'video',
-      url: 'https://www.youtube.com/watch?v=example1',
-      thumbnail: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81',
-      title: 'Studio Setup Video',
+      url: 'https://youtu.be/YuqA60ZOAsA?si=Rn_fA4ZgmxP7CZwn',
+      thumbnail: 'https://i.ytimg.com/an_webp/YuqA60ZOAsA/mqdefault_6s.webp?du=3000&sqp=CPD8wbsG&rs=AOn4CLDv0-r_UCHBezzWAX5tqM5pCc6iKw',
+      title: 'Junior Pens Hype Video',
     },
     {
       type: 'image',

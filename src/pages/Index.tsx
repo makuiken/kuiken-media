@@ -19,7 +19,7 @@ const Index = () => {
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source
-            src="https://storage.cloud.google.com/kuiken-media-bucket/hero-videos/postgame-reactions-final-optimized.webm"
+            src="https://storage.cloud.google.com/kuiken-media-bucket/hero-videos/optimized-kuiken-media-reel.webm"
             type="video/webm"
           />
           <source
