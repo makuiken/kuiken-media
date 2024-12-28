@@ -30,13 +30,13 @@ const Index = () => {
         </video>
         <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative h-full flex items-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="animate-fade-in">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4">
-                Crafting Visual Stories
+        <div className="relative h-full flex items-end pb-24">
+          <div className="w-full px-4 sm:px-6 lg:px-8">
+            <div className="animate-fade-in ml-auto max-w-2xl text-right">
+              <h1 className="text-6xl md:text-8xl font-bold mb-4 text-gold">
+                KUIKEN MEDIA
               </h1>
-              <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl">
+              <p className="text-xl md:text-2xl text-gray-300 mb-8">
                 Professional media production and broadcasting services for your
                 creative needs
               </p>
