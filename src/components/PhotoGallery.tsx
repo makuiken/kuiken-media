@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
-import { Play } from 'lucide-react';
+import { Play, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const PhotoGallery = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -89,9 +89,13 @@ const PhotoGallery = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="flex justify-center gap-4 mt-6">
-            <CarouselPrevious className="static translate-y-0 hover:bg-white/20 transition-colors duration-200" />
-            <CarouselNext className="static translate-y-0 hover:bg-white/20 transition-colors duration-200" />
+          <div className="flex justify-center gap-8 mt-8">
+            <CarouselPrevious className="relative inset-0 translate-y-0 h-10 w-10 rounded-full border-2 border-gold bg-black/20 hover:bg-gold hover:text-black transition-all duration-300">
+              <ChevronLeft className="h-6 w-6" />
+            </CarouselPrevious>
+            <CarouselNext className="relative inset-0 translate-y-0 h-10 w-10 rounded-full border-2 border-gold bg-black/20 hover:bg-gold hover:text-black transition-all duration-300">
+              <ChevronRight className="h-6 w-6" />
+            </CarouselNext>
           </div>
         </Carousel>
       </div>
