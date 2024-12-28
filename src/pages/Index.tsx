@@ -1,6 +1,7 @@
 import Navigation from "../components/Navigation";
 import SocialLinks from "../components/SocialLinks";
 import PhotoGallery from "../components/PhotoGallery";
+import ServiceGallery from "@/components/ServiceGallery";
 
 const Index = () => {
   return (
@@ -43,7 +44,7 @@ const Index = () => {
                 href="#work"
                 className="inline-block bg-gold text-black px-8 py-3 rounded-md font-semibold hover:bg-white transition-colors"
               >
-                View Our Work
+                View Services
               </a>
             </div>
           </div>
@@ -51,6 +52,18 @@ const Index = () => {
       </div>
 
       {/* Work Section */}
+      <section
+        id="services"
+        className="py-20 bg-black"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Services</h2>
+          <p className="text-gray-400">
+            Solutions for a wide range of creative media
+          </p>
+        </div>
+        <ServiceGallery />
+      </section>
       <section
         id="work"
         className="py-20 bg-black"
