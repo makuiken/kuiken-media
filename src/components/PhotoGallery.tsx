@@ -41,7 +41,7 @@ const PhotoGallery = () => {
           align: "start",
           loop: true,
         }}
-        className="w-full"
+        className="w-full relative"
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {content.map((item, index) => (
@@ -64,14 +64,14 @@ const PhotoGallery = () => {
                       }`}
                     />
                     <div
-                      className={`absolute inset-0 bg-black/50 flex items-center justify-center transition-opacity duration-300 ${
+                      className={`absolute inset-0 bg-black/50 flex flex-col items-center justify-center gap-4 transition-opacity duration-300 ${
                         hoveredIndex === index ? 'opacity-100' : 'opacity-0'
                       }`}
                     >
-                      {item.type === 'video' && (
-                        <Play className="w-12 h-12 text-white absolute" />
-                      )}
                       <h3 className="text-white text-2xl font-bold text-center px-4">{item.title}</h3>
+                      {item.type === 'video' && (
+                        <Play className="w-12 h-12 text-white" />
+                      )}
                     </div>
                     {item.type === 'video' && (
                       <a
@@ -88,8 +88,8 @@ const PhotoGallery = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="hidden md:flex" />
-        <CarouselNext className="hidden md:flex" />
+        <CarouselPrevious className="absolute left-0 md:-left-12 top-1/2 -translate-y-1/2" />
+        <CarouselNext className="absolute right-0 md:-right-12 top-1/2 -translate-y-1/2" />
       </Carousel>
     </div>
   );
