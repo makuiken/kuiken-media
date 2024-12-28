@@ -93,9 +93,9 @@ const Index = () => {
                 accusantium recusandae eum ipsam harum!
               </p>
               <p className="text-gray-300 text-lg">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Possimus reiciendis aspernatur voluptates, harum laboriosam
-                provident illo velit incidunt cum molestias!
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex
+                repellat minus tempora id, cupiditate veniam maxime voluptatum
+                laboriosam repudiandae mollitia.
               </p>
             </div>
             <div className="relative h-[400px] rounded-lg overflow-hidden">
@@ -121,7 +121,7 @@ const Index = () => {
             help bring your vision to life.
           </p>
           <a
-            href="mailto:contact@example.com"
+            href="mailto:kuikenmedia@gmail.com"
             className="inline-block bg-gold text-black px-8 py-3 rounded-md font-semibold hover:bg-white transition-colors"
           >
             Contact Us
