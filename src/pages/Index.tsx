@@ -41,7 +41,7 @@ const Index = () => {
                 creative needs
               </p>
               <a
-                href="#work"
+                href="#services"
                 className="inline-block bg-gold text-black px-8 py-3 rounded-md font-semibold hover:bg-white transition-colors"
               >
                 View Services
@@ -83,24 +83,24 @@ const Index = () => {
         className="py-20 bg-zinc-900"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">About Us</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">About Me</h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-gray-300 text-lg mb-6">
-                We are a creative media production company specializing in
-                high-quality video production, live broadcasting, and content
-                creation. With years of experience in the industry, we bring
-                your vision to life through compelling visual storytelling.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
+                maiores vitae expedita minima provident, assumenda quisquam
+                ipsum eos rerum odio veritatis et itaque aliquam, veniam
+                accusantium recusandae eum ipsam harum!
               </p>
               <p className="text-gray-300 text-lg">
-                Our team of professionals uses state-of-the-art equipment and
-                innovative techniques to deliver exceptional results for every
-                project.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Possimus reiciendis aspernatur voluptates, harum laboriosam
+                provident illo velit incidunt cum molestias!
               </p>
             </div>
             <div className="relative h-[400px] rounded-lg overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+                src="https://storage.cloud.google.com/kuiken-media-bucket/page-images/YBTV-candid-headshot.jpg"
                 alt="Our Work"
                 className="absolute inset-0 w-full h-full object-cover"
               />
