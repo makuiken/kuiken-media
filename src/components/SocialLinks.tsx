@@ -3,7 +3,7 @@ import { Instagram, X, Youtube, Tiktok, Linkedin } from 'lucide-react';
 const SocialLinks = () => {
   const socials = [
     { icon: <Instagram size={20} />, href: 'https://www.instagram.com/kuiken_media/', label: 'Instagram' },
-    { icon: <Twitter size={20} />, href: 'https://x.com/kuiken_media', label: 'Twitter' },
+    { icon: <X size={20} />, href: 'https://x.com/kuiken_media', label: 'X' },
     { icon: <Youtube size={20} />, href: 'https://www.youtube.com/channel/UCcMS--UTQ2ocsltx3NYYzrA', label: 'Youtube' },
     { icon: <Tiktok size={20} />, href: 'https://www.tiktok.com/Kuiken_media', label: 'TikTok' },
     { icon: <Linkedin size={20} />, href: 'https://www.linkedin.com/in/caleb-kuiken-a83b59237/', label: 'LinkedIn' },
