@@ -4,7 +4,7 @@ export const TiktokIcon = ({ size = 20, className = '' }: { size?: number; class
   <svg 
     width={size} 
     height={size} 
-    viewBox="0 0 24 24" 
+    viewBox="0 0 50 50" 
     fill="none"
     className={className}
     stroke="currentColor"
@@ -21,7 +21,7 @@ export const XIcon = ({ size = 20, className = '' }: { size?: number; className?
   <svg
     width={size}
     height={size}
-    viewBox="0 0 24 24"
+    viewBox="0 0 50 50"
     fill="none"
     className={className}
     stroke="currentColor"
