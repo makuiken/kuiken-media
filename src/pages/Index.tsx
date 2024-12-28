@@ -85,8 +85,8 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">About Me</h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-gray-300 text-lg mb-6">
+            <div className="space-y-6">
+              <p className="text-gray-300 text-lg">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
                 maiores vitae expedita minima provident, assumenda quisquam
                 ipsum eos rerum odio veritatis et itaque aliquam, veniam
@@ -97,6 +97,14 @@ const Index = () => {
                 repellat minus tempora id, cupiditate veniam maxime voluptatum
                 laboriosam repudiandae mollitia.
               </p>
+              <a
+                href="#" // URL to be added later
+                className="inline-block bg-gold text-black px-8 py-3 rounded-md font-semibold hover:bg-white transition-colors duration-300 mt-6 hover:scale-105 transform"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Full Portfolio
+              </a>
             </div>
             <div className="relative h-[400px] rounded-lg overflow-hidden">
               <img
