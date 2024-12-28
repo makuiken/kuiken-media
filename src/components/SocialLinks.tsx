@@ -1,11 +1,12 @@
-import { Instagram, X, Youtube, BrandTiktok, Linkedin } from 'lucide-react';
+import { Instagram, Youtube, Linkedin } from 'lucide-react';
+import { TiktokIcon, XIcon } from './CustomIcons';
 
 const SocialLinks = () => {
   const socials = [
     { icon: <Instagram size={20} />, href: 'https://www.instagram.com/kuiken_media/', label: 'Instagram' },
-    { icon: <X size={20} />, href: 'https://x.com/kuiken_media', label: 'X' },
+    { icon: <XIcon size={20} />, href: 'https://x.com/kuiken_media', label: 'X' },
     { icon: <Youtube size={20} />, href: 'https://www.youtube.com/channel/UCcMS--UTQ2ocsltx3NYYzrA', label: 'Youtube' },
-    { icon: <BrandTiktok size={20} />, href: 'https://www.tiktok.com/Kuiken_media', label: 'TikTok' },
+    { icon: <TiktokIcon size={20} />, href: 'https://www.tiktok.com/Kuiken_media', label: 'TikTok' },
     { icon: <Linkedin size={20} />, href: 'https://www.linkedin.com/in/caleb-kuiken-a83b59237/', label: 'LinkedIn' },
   ];
 
