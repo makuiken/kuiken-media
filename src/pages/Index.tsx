@@ -33,7 +33,7 @@ const Index = () => {
         <div className="relative h-full flex items-end pb-24">
           <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="animate-fade-in ml-auto max-w-2xl text-right">
-              <h1 className="text-6xl md:text-8xl font-bold mb-4 text-gold">
+              <h1 className="text-6xl md:text-8xl font-bold mb-4 text-sky-500">
                 KUIKEN MEDIA
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 mb-8">
@@ -42,7 +42,7 @@ const Index = () => {
               </p>
               <a
                 href="#services"
-                className="inline-block bg-gold text-black px-8 py-3 rounded-md font-semibold hover:bg-white transition-colors"
+                className="inline-block bg-amber-600 text-black px-8 py-3 rounded-md font-semibold hover:bg-white transition-colors"
               >
                 View Services
               </a>
