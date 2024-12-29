@@ -13,29 +13,46 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Play, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const PhotoGallery = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [galleryItems, setGalleryItems] = useState<any[]>([]);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  // 2. Fetch data from the "imageGallery" content type
   useEffect(() => {
-    // Fetch entries from the 'imageGallery' content type
     contentfulClient
-      .getEntries({ content_type: 'imageGallery' })
+      .getEntries({ content_type: "imageGallery" })
       .then((response) => {
         const items = response.items.map((entry: any) => {
-          const { title, type, url, thumbnail, orientation } = entry.fields;
+          const { title, type, image, youtubeUrl, thumbnail, orientation } =
+            entry.fields;
+
+          // Build image URL
+          // By default, Contentful’s asset URLs may start with "//".
+          const imageUrl = image?.fields?.file?.url
+            ? `https:${image.fields.file.url}`
+            : "";
+
+          // Build thumbnail URL for videos if available
+          const thumbnailUrl = thumbnail?.fields?.file?.url
+            ? `https:${thumbnail.fields.file.url}`
+            : "";
+
           return {
-            title,
-            type,        // "photo" or "video"
-            url,         // direct link (image or YouTube)
-            thumbnail,   // for video only (optional for photos)
-            orientation, // "horizontal" or "vertical"
+            title,         // string
+            type,          // "photo" or "video"
+            imageUrl,      // required image
+            youtubeUrl,    // optional
+            thumbnailUrl,  // optional
+            orientation,   // "vertical" or "horizontal"
           };
         });
         setGalleryItems(items);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error("Error fetching imageGallery entries:", err);
+      });
   }, []);
 
+  // 3. Render the carousel with conditional logic for photo/video
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="relative">
@@ -47,57 +64,69 @@ const PhotoGallery = () => {
           className="w-full"
         >
           <CarouselContent className="-ml-2 md:-ml-4">
-            {galleryItems.map((item, index) => (
-              <CarouselItem 
-                key={index} 
-                className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3"
-              >
-                <Card className="border-0">
-                  <CardContent className="p-0">
-                    <div
-                      className="relative overflow-hidden rounded-lg aspect-[3/4]"
-                      onMouseEnter={() => setHoveredIndex(index)}
-                      onMouseLeave={() => setHoveredIndex(null)}
-                    >
-                      {/* If it's a video, show the thumbnail; otherwise show the image's url */}
-                      <img
-                        src={item.type === 'video' ? item.thumbnail : item.url}
-                        alt={item.title}
-                        loading="lazy"
-                        className={`w-full h-full transition-transform duration-500 hover:scale-110 ${
-                          item.type === 'photo' && item.orientation === 'vertical'
-                            ? 'object-contain'
-                            : 'object-cover'
-                        }`}
-                      />
+            {galleryItems.map((item, index) => {
+              const isVideo = item.type === "video";
+
+              // Decide what image/thumbnail to display
+              // If it's a video and we have a thumbnail, use it
+              // Otherwise, fallback to the required `imageUrl` or a placeholder
+              const displayUrl = isVideo
+                ? item.thumbnailUrl || item.imageUrl || "/placeholder-video.jpg"
+                : item.imageUrl;
+
+              return (
+                <CarouselItem
+                  key={index}
+                  className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3"
+                >
+                  <Card className="border-0">
+                    <CardContent className="p-0">
                       <div
-                        className={`absolute inset-0 bg-black/50 flex flex-col items-center justify-center gap-4 transition-opacity duration-300 ${
-                          hoveredIndex === index ? 'opacity-100' : 'opacity-0'
-                        }`}
+                        className="relative overflow-hidden rounded-lg aspect-[3/4]"
+                        onMouseEnter={() => setHoveredIndex(index)}
+                        onMouseLeave={() => setHoveredIndex(null)}
                       >
-                        <h3 className="text-white text-2xl font-bold text-center px-4">
-                          {item.title}
-                        </h3>
-                        {item.type === 'video' && (
-                          <Play className="w-12 h-12 text-white" />
+                        {/* Main image or thumbnail */}
+                        <img
+                          src={displayUrl}
+                          alt={item.title}
+                          className={`w-full h-full transition-transform duration-500 hover:scale-110 ${
+                            item.orientation === "horizontal"
+                              ? "object-cover"
+                              : "object-contain"
+                          }`}
+                        />
+
+                        {/* Overlay with title and play icon if video */}
+                        <div
+                          className={`absolute inset-0 bg-black/50 flex flex-col items-center justify-center gap-4 transition-opacity duration-300 ${
+                            hoveredIndex === index ? "opacity-100" : "opacity-0"
+                          }`}
+                        >
+                          <h3 className="text-white text-2xl font-bold text-center px-4">
+                            {item.title}
+                          </h3>
+                          {isVideo && <Play className="w-12 h-12 text-white" />}
+                        </div>
+
+                        {/* Clickable overlay if it's a video */}
+                        {isVideo && item.youtubeUrl && (
+                          <a
+                            href={item.youtubeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="absolute inset-0"
+                            aria-label={`Watch ${item.title}`}
+                          />
                         )}
                       </div>
-                      {/* Clickable overlay if it’s a video (YouTube link or similar) */}
-                      {item.type === 'video' && (
-                        <a
-                          href={item.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="absolute inset-0"
-                          aria-label={`Watch ${item.title}`}
-                        />
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              );
+            })}
           </CarouselContent>
+          {/* Carousel Navigation */}
           <div className="flex justify-center gap-8 mt-8">
             <CarouselPrevious className="relative inset-0 translate-y-0 h-10 w-10 rounded-full border-2 border-gold bg-black/20 hover:bg-gold hover:text-black transition-all duration-300">
               <ChevronLeft className="h-6 w-6" />
