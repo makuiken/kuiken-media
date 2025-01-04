@@ -3,6 +3,7 @@ import Navigation from "../components/Navigation";
 import SocialLinks from "../components/SocialLinks";
 import PhotoGallery from "../components/PhotoGallery";
 import ServiceGallery from "@/components/ServiceGallery";
+import HeroVideo from "@/components/HeroVideo";
 
 const Index = () => {
   usePageAnimations();
@@ -14,34 +15,15 @@ const Index = () => {
 
       {/* Hero Section with Video Background */}
       <div className="relative h-[100svh]">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source
-            src="https://storage.cloud.google.com/kuiken-media-bucket/hero-videos/optimized-kuiken-media-reel.webm"
-            type="video/webm"
-          />
-          <source
-            src="https://storage.cloud.google.com/kuiken-media-bucket/hero-videos/postgame-reactions-final-optimized.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
-        <div className="absolute inset-0 bg-black/50" />
-
+        <HeroVideo />
         <div className="relative h-full flex items-end pb-16 sm:pb-24">
           <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="mx-auto sm:mr-0 max-w-[90vw] sm:max-w-2xl lg:max-w-3xl text-center sm:text-right">
-              {" "}
               <h1
                 className="hero-title relative text-4xl sm:text-6xl lg:text-8xl font-bold mb-3 sm:mb-4 tracking-tight
-               text-sky-500
-               drop-shadow-[0_0_10px_rgba(14,165,233,0.3)]
-               [text-shadow:_2px_2px_2px_rgb(14_165_233_/_20%),_-2px_-2px_2px_rgb(245_158_11_/_20%)]"
+                text-sky-500
+                drop-shadow-[0_0_10px_rgba(14,165,233,0.3)]
+                [text-shadow:_2px_2px_2px_rgb(14_165_233_/_20%),_-2px_-2px_2px_rgb(245_158_11_/_20%)]"
               >
                 KUIKEN MEDIA
               </h1>
