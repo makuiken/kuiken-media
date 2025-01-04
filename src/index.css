@@ -71,54 +71,18 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
   html {
     scroll-behavior: smooth;
-  }
-  /* Add initial states for animated elements */
-  .hero-title,
-  .hero-text,
-  .hero-button {
-    opacity: 0;
+    scroll-padding-top: 5rem;
   }
 
-  .section-header,
-  .about-paragraph,
-  .about-image {
-    opacity: 0;
-  }
-
-  .section-header {
-    transform: translateX(-100px) scale(0.8);
-  }
-
-  .about-paragraph {
-    transform: translateY(20px);
-  }
-
-  .about-image {
-    transform: scale(0.9);
-  }
-
-  .section-header,
-  .about-paragraph,
-  .about-image {
-    will-change: transform, opacity;
-  }
-
-  .section-subtitle {
-    opacity: 0;
-    transform: translateY(20px);
-    will-change: transform, opacity;
-  }
-
-  .section-container {
-    position: relative;
-  }
-
+  /* Gradient section dividers */
   .section-container::after {
     content: "";
     position: absolute;
@@ -129,8 +93,8 @@
       90deg,
       transparent 0%,
       rgba(14, 165, 233, 0.2) 25%,
-      /* sky-500 with low opacity */ rgba(245, 158, 11, 0.2) 75%,
-      /* amber-500 with low opacity */ transparent 100%
+      rgba(245, 158, 11, 0.2) 75%,
+      transparent 100%
     );
     bottom: -20px;
     opacity: 0;
@@ -143,48 +107,7 @@
     transform: scaleX(1);
   }
 
-  .image-border-gradient {
-    position: relative;
-    border-radius: 0.5rem;
-    overflow: hidden;
-  }
-
-  .image-border-gradient::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    background: linear-gradient(
-      135deg,
-      rgba(14, 165, 233, 0.5),
-      /* sky-500 */ rgba(39, 39, 42, 0.5),
-      /* zinc-800 */ rgba(245, 158, 11, 0.5) /* amber-500 */
-    );
-    z-index: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .image-border-gradient:hover::before {
-    opacity: 1;
-  }
-
-  @keyframes borderGradientShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  .image-border-gradient::before {
-    animation: borderGradientShift 8s ease infinite;
-    background-size: 200% 200%;
-  }
-
-  /* Optional: Add this if you want smoother animations */
+  /* Better text rendering */
   * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
