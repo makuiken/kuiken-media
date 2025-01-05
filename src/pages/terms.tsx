@@ -1,12 +1,12 @@
 import { motion } from "motion/react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import SEO from '../components/SEO';
+import SEO from "../components/SEO";
 
 const Terms = () => {
   return (
     <>
-      <SEO 
+      <SEO
         title="Terms of Service - Kuiken Media"
         description="Read about the terms and conditions for using Kuiken Media's services."
         url="https://kuikenmedia.com/terms"
@@ -31,9 +31,9 @@ const Terms = () => {
                 1. Agreement to Terms
               </h2>
               <p>
-                By accessing our website, you agree to be bound by these terms of
-                service and agree that you are responsible for compliance with any
-                applicable local laws.
+                By accessing our website, you agree to be bound by these terms
+                of service and agree that you are responsible for compliance
+                with any applicable local laws.
               </p>
             </section>
 
@@ -43,19 +43,19 @@ const Terms = () => {
               </h2>
               <p>
                 Permission is granted to temporarily download one copy of the
-                materials (information or software) on Kuiken Media's website for
-                personal, non-commercial transitory viewing only.
+                materials (information or software) on Kuiken Media's website
+                for personal, non-commercial transitory viewing only.
               </p>
               <p>
-                This is the grant of a license, not a transfer of title, and under
-                this license you may not:
+                This is the grant of a license, not a transfer of title, and
+                under this license you may not:
               </p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Modify or copy the materials</li>
                 <li>Use the materials for any commercial purpose</li>
                 <li>
-                  Attempt to decompile or reverse engineer any software contained
-                  on the website
+                  Attempt to decompile or reverse engineer any software
+                  contained on the website
                 </li>
                 <li>
                   Remove any copyright or other proprietary notations from the
@@ -73,11 +73,11 @@ const Terms = () => {
                 3. Disclaimer
               </h2>
               <p>
-                The materials on Kuiken Media's website are provided on an 'as is'
-                basis. Kuiken Media makes no warranties, expressed or implied, and
-                hereby disclaims and negates all other warranties including,
-                without limitation, implied warranties or conditions of
-                merchantability, fitness for a particular purpose, or
+                The materials on Kuiken Media's website are provided on an 'as
+                is' basis. Kuiken Media makes no warranties, expressed or
+                implied, and hereby disclaims and negates all other warranties
+                including, without limitation, implied warranties or conditions
+                of merchantability, fitness for a particular purpose, or
                 non-infringement of intellectual property or other violation of
                 rights.
               </p>
@@ -88,10 +88,11 @@ const Terms = () => {
                 4. Limitations
               </h2>
               <p>
-                In no event shall Kuiken Media or its suppliers be liable for any
-                damages (including, without limitation, damages for loss of data
-                or profit, or due to business interruption) arising out of the use
-                or inability to use the materials on Kuiken Media's website.
+                In no event shall Kuiken Media or its suppliers be liable for
+                any damages (including, without limitation, damages for loss of
+                data or profit, or due to business interruption) arising out of
+                the use or inability to use the materials on Kuiken Media's
+                website.
               </p>
             </section>
 
@@ -108,13 +109,15 @@ const Terms = () => {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white mb-4">6. Links</h2>
+              <h2 className="text-2xl font-semibold text-white mb-4">
+                6. Links
+              </h2>
               <p>
                 Kuiken Media has not reviewed all of the sites linked to its
-                website and is not responsible for the contents of any such linked
-                site. The inclusion of any link does not imply endorsement by
-                Kuiken Media of the site. Use of any such linked website is at the
-                user's own risk.
+                website and is not responsible for the contents of any such
+                linked site. The inclusion of any link does not imply
+                endorsement by Kuiken Media of the site. Use of any such linked
+                website is at the user's own risk.
               </p>
             </section>
 
