@@ -115,3 +115,9 @@
     -moz-osx-font-smoothing: grayscale;
   }
 }
+
+@layer utilities {
+  .transition-video {
+    transition: opacity 500ms ease-in-out;
+  }
+}
