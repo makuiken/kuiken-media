@@ -36,7 +36,7 @@ const Navigation = () => {
     { label: "Work", href: "work" },
     { label: "About", href: "about" },
     { label: "Contact", href: "contact" },
-  ];
+  ] as const;
 
   return (
     <motion.nav
@@ -46,6 +46,7 @@ const Navigation = () => {
       className={`fixed w-full z-50 transition-colors duration-300 ${
         isScrolled ? "bg-black/80 backdrop-blur-md" : "bg-transparent"
       }`}
+      aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -66,6 +67,8 @@ const Navigation = () => {
                   key={item.label}
                   onClick={() => handleNavigation(item.href)}
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  type="button"
+                  aria-label={`Navigate to ${item.label} section`}
                 >
                   {item.label}
                 </button>
@@ -77,7 +80,9 @@ const Navigation = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white"
+              className="text-gray-300 hover:text-white p-2"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              type="button"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -87,7 +92,10 @@ const Navigation = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-black/95 animate-fade-in">
+        <div
+          className="md:hidden bg-black/95 animate-fade-in"
+          aria-label="Mobile navigation menu"
+        >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {menuItems.map((item) => (
               <button
