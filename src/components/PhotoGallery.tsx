@@ -13,8 +13,6 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
-import OptimizedImage from "./OptimizedImage";
-import { transformImageUrl } from "../utils/imageTransform";
 
 interface GalleryItem {
   title: string;
@@ -33,7 +31,6 @@ const PhotoGallery = () => {
 
   const plugin = Autoplay({ delay: 3000 });
 
-  // Fetch data from Contentful
   useEffect(() => {
     if (isVisible) {
       contentfulClient
@@ -118,17 +115,10 @@ const PhotoGallery = () => {
                         {/* Image container */}
                         <div className="relative rounded-lg overflow-hidden aspect-[3/4]">
                           <div className="absolute inset-[1px] bg-zinc-900 rounded-lg overflow-hidden">
-                            <OptimizedImage
-                              src={transformImageUrl(displayUrl, {
-                                width: 800,
-                                quality: 75,
-                                format: "webp",
-                              })}
+                            <img
+                              src={displayUrl}
                               alt={item.title}
-                              width={800}
-                              height={600}
-                              priority={index < 2}
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              loading={index < 2 ? "eager" : "lazy"}
                               className="w-full h-full object-cover transition-opacity duration-300"
                             />
 
