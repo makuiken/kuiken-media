@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import OptimizedImage from "./OptimizedImage";
@@ -20,6 +20,18 @@ const ServiceGallery = () => {
     threshold: 0.1,
     rootMargin: "100px",
   });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Memoize services array to prevent unnecessary re-renders
   const services: Service[] = [
@@ -118,14 +130,14 @@ const ServiceGallery = () => {
                   transition-all duration-500 ease-in-out flex flex-col items-start justify-end p-6"
                 >
                   <AnimatePresence mode="wait">
-                    {isHovered && (
+                    {(isHovered || isMobile) && (
                       <>
                         <motion.h3
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 20 }}
                           transition={{ duration: 0.3 }}
-                          className="text-white text-2xl font-bold mb-2"
+                          className="text-white text-2xl font-bold mb-2 block md:hidden md:group-hover:block"
                         >
                           {service.title}
                         </motion.h3>
@@ -135,7 +147,7 @@ const ServiceGallery = () => {
                           animate={{ opacity: 0.7, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
                           transition={{ duration: 0.3, delay: 0.1 }}
-                          className="text-gray-300"
+                          className="text-gray-300 block md:hidden md:group-hover:block"
                         >
                           {service.description}
                         </motion.p>
@@ -146,7 +158,7 @@ const ServiceGallery = () => {
                             animate={{ opacity: 0.7, y: 0 }}
                             exit={{ opacity: 0, y: 10 }}
                             transition={{ duration: 0.3, delay: 0.2 }}
-                            className="text-sm text-gray-400 mt-2 flex items-center"
+                            className="text-sm text-gray-400 mt-2 flex items-center block md:hidden md:group-hover:block"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -170,12 +182,12 @@ const ServiceGallery = () => {
 
                   {/* External link indicator */}
                   <AnimatePresence>
-                    {service.link && isHovered && (
+                    {service.link && (isHovered || isMobile) && (
                       <motion.svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
-                        className="absolute bottom-6 right-6 w-6 h-6 text-white"
+                        className="absolute bottom-6 right-6 w-6 h-6 text-white block md:hidden md:group-hover:block"
                         initial={{ opacity: 0, x: -10, y: 10 }}
                         animate={{ opacity: 0.75, x: 0, y: 0 }}
                         exit={{ opacity: 0, x: -10, y: 10 }}

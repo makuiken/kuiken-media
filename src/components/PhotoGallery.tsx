@@ -124,17 +124,22 @@ const PhotoGallery = () => {
 
                             {/* Content overlay */}
                             <div
-                              className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity duration-300 flex flex-col items-center justify-center gap-4 ${
-                                hoveredIndex === index
-                                  ? "opacity-100"
-                                  : "opacity-0"
-                              }`}
+                              className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity duration-300 flex flex-col items-center justify-center gap-4 
+                                opacity-100 md:opacity-0 ${
+                                  hoveredIndex === index ? "md:opacity-100" : ""
+                                }`}
                             >
-                              <h3 className="text-white text-2xl font-bold text-center px-4 transform transition-transform duration-300 translate-y-0 group-hover:-translate-y-2">
+                              <h3
+                                className="text-white text-2xl font-bold text-center px-4 transform transition-transform duration-300 
+                                translate-y-0 md:translate-y-0 md:group-hover:-translate-y-2"
+                              >
                                 {item.title}
                               </h3>
                               {isVideo && (
-                                <Play className="w-12 h-12 text-white transform transition-transform duration-300 translate-y-0 group-hover:-translate-y-2" />
+                                <Play
+                                  className="w-12 h-12 text-white transform transition-transform duration-300 
+                                  translate-y-0 md:translate-y-0 md:group-hover:-translate-y-2"
+                                />
                               )}
                             </div>
 
