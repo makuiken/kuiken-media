@@ -369,7 +369,7 @@ const Index = () => {
                 <div className="absolute -inset-[1px] bg-gradient-to-br from-sky-500/50 via-zinc-800/50 to-amber-500/50 rounded-lg" />
                 <div className="absolute inset-[1px] bg-zinc-900 rounded-lg overflow-hidden">
                   <img
-                    src="https://storage.cloud.google.com/kuiken-media-bucket/page-images/YBTV-candid-headshot.jpg"
+                    src="https://storage.googleapis.com/kuiken-media-bucket/page-images/YBTV-candid-headshot.jpg"
                     alt="Caleb Kuiken"
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
