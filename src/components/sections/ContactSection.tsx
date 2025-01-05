@@ -53,7 +53,7 @@ const ContactSection = () => {
             href="mailto:kuikenmedia@gmail.com"
             className="inline-flex items-center w-full sm:w-auto px-4 sm:px-8 py-2 sm:py-4 text-sm sm:text-lg font-semibold bg-gradient-to-r from-amber-500 to-amber-400 text-black rounded-lg transition-all duration-300 hover:from-amber-400 hover:to-amber-300 transform hover:shadow-lg hover:shadow-amber-500/20 justify-center"
           >
-            Email Us
+            Email
             <svg
               className="w-4 h-4 sm:w-5 sm:h-5 ml-2"
               fill="none"
@@ -75,7 +75,7 @@ const ContactSection = () => {
             href="tel:+18622934078"
             className="inline-flex items-center w-full sm:w-auto px-4 sm:px-8 py-2 sm:py-4 text-sm sm:text-lg font-semibold bg-gradient-to-r from-sky-500 to-sky-400 text-black rounded-lg transition-all duration-300 hover:from-sky-400 hover:to-sky-300 transform hover:shadow-lg hover:shadow-sky-500/20 justify-center"
           >
-            Message Me
+            Message
             <svg
               className="w-4 h-4 sm:w-5 sm:h-5 ml-2"
               fill="none"
