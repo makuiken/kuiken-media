@@ -8,6 +8,8 @@ import PhotoGallery from "../components/PhotoGallery";
 import ServiceGallery from "@/components/ServiceGallery";
 import HeroVideo from "@/components/HeroVideo";
 import Footer from "@/components/Footer";
+import OptimizedImage from "../components/OptimizedImage";
+import { transformImageUrl } from "../utils/imageTransform";
 
 const Index = () => {
   // Scroll progress animation
@@ -362,16 +364,26 @@ const Index = () => {
                 whileInView={{ opacity: 1, scale: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                whileHover={{ scale: 1.02 }}
                 className="relative h-[250px] sm:h-[300px] lg:h-[400px] rounded-lg overflow-hidden group"
               >
                 {/* Modern gradient border overlay */}
                 <div className="absolute -inset-[1px] bg-gradient-to-br from-sky-500/50 via-zinc-800/50 to-amber-500/50 rounded-lg" />
                 <div className="absolute inset-[1px] bg-zinc-900 rounded-lg overflow-hidden">
-                  <img
-                    src="https://storage.googleapis.com/kuiken-media-bucket/page-images/YBTV-candid-headshot.jpg"
+                  <OptimizedImage
+                    src={transformImageUrl(
+                      "https://storage.googleapis.com/kuiken-media-bucket/page-images/YBTV-candid-headshot.jpg",
+                      {
+                        width: 800,
+                        quality: 80,
+                        format: "webp",
+                      }
+                    )}
                     alt="Caleb Kuiken"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    width={800}
+                    height={600}
+                    priority={true}
+                    className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   {/* Subtle gradient overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/10 to-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

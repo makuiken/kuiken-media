@@ -1,16 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import { contentfulClient } from "../lib/contentfulClient";
 
-interface HeroVideoData {
-  title: string;
-  mp4Ref: string;
-  webmRef?: string;
-  posterImage?: string;
+interface HeroVideo {
+  fields: {
+    title: string;
+    mp4Ref: string;
+    webmRef?: string;
+    posterImage?: {
+      fields: {
+        file: {
+          url: string;
+        };
+      };
+    };
+  };
 }
 
 const HeroVideo = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoData, setVideoData] = useState<HeroVideoData | null>(null);
+  const [videoData, setVideoData] = useState<HeroVideo | null>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   useEffect(() => {
@@ -18,25 +26,30 @@ const HeroVideo = () => {
       try {
         const response = await contentfulClient.getEntries({
           content_type: "heroVideo",
-          limit: 1,
           select: [
             "fields.title",
             "fields.mp4Ref",
             "fields.webmRef",
             "fields.posterImage",
           ],
+          include: 2, // Include linked assets
         });
 
         if (response.items.length > 0) {
-          const fields = response.items[0].fields as HeroVideoData;
-          setVideoData(fields);
+          return response.items[0] as HeroVideo;
         }
+        return null;
       } catch (error) {
         console.error("Error fetching hero video:", error);
+        return null;
       }
     };
 
-    fetchHeroVideo();
+    fetchHeroVideo().then((data) => {
+      if (data) {
+        setVideoData(data);
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -73,11 +86,11 @@ const HeroVideo = () => {
 
   return (
     <>
-      {!isVideoLoaded && videoData?.posterImage && (
+      {!isVideoLoaded && videoData?.fields.posterImage && (
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url(${videoData.posterImage})`,
+            backgroundImage: `url(https:${videoData.fields.posterImage.fields.file.url})`,
             backgroundColor: "black",
           }}
           aria-hidden="true"
@@ -90,20 +103,20 @@ const HeroVideo = () => {
         muted
         loop
         playsInline
-        poster={videoData?.posterImage}
+        poster={videoData?.fields.posterImage?.fields.file.url}
         className={`absolute inset-0 w-full h-full object-cover ${
           isVideoLoaded ? "opacity-100" : "opacity-0"
         } transition-opacity duration-500`}
       >
-        {videoData?.webmRef && (
+        {videoData?.fields.webmRef && (
           <source
-            src={videoData.webmRef}
+            src={videoData.fields.webmRef}
             type="video/webm"
           />
         )}
-        {videoData?.mp4Ref && (
+        {videoData?.fields.mp4Ref && (
           <source
-            src={videoData.mp4Ref}
+            src={videoData.fields.mp4Ref}
             type="video/mp4"
           />
         )}

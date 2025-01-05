@@ -1,6 +1,8 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+import OptimizedImage from "./OptimizedImage";
+import { transformImageUrl } from "../utils/imageTransform";
 
 interface Service {
   url: string;
@@ -13,14 +15,16 @@ interface Service {
 
 const ServiceGallery = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
   const [ref, isVisible] = useIntersectionObserver({
     threshold: 0.1,
     rootMargin: "100px",
   });
 
+  // Memoize services array to prevent unnecessary re-renders
   const services: Service[] = [
     {
-      url: "https://images.unsplash.com/photo-1612151387614-0d29a04ff5f3?q=80&w=3435&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      url: "https://images.unsplash.com/photo-1612151387614-0d29a04ff5f3",
       title: "Sports Broadcasting",
       description:
         "Professional live sports coverage and broadcasting services",
@@ -79,6 +83,7 @@ const ServiceGallery = () => {
     >
       {services.map((service, index) => {
         const isHovered = hoveredIndex === index;
+
         const content = (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -92,16 +97,22 @@ const ServiceGallery = () => {
             {/* Image container */}
             <div className="relative rounded-lg overflow-hidden aspect-video">
               <div className="absolute inset-[1px] bg-zinc-900 rounded-lg overflow-hidden">
-                <img
-                  src={service.url}
+                <OptimizedImage
+                  src={transformImageUrl(service.url, {
+                    width: 1920,
+                    height: 1080,
+                    quality: 80,
+                    format: "webp",
+                  })}
                   alt={service.alt}
-                  loading="lazy"
                   width={1920}
                   height={1080}
+                  priority={index < 2} // Load first two images immediately
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
                   className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-105"
                 />
 
-                {/* Content overlay */}
+                {/* Content overlay with optimized animations */}
                 <div
                   className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent 
                   transition-all duration-500 ease-in-out flex flex-col items-start justify-end p-6"

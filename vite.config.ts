@@ -2,8 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import imagemin from "vite-plugin-imagemin";
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
@@ -11,8 +11,35 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
+    mode === "development" && componentTagger(),
+    imagemin({
+      gifsicle: {
+        optimizationLevel: 7,
+        interlaced: false,
+      },
+      optipng: {
+        optimizationLevel: 7,
+      },
+      mozjpeg: {
+        quality: 75,
+      },
+      pngquant: {
+        quality: [0.7, 0.8],
+        speed: 4,
+      },
+      webp: {
+        quality: 75,
+      },
+      svgo: {
+        multipass: true,
+        plugins: [
+          {
+            name: "removeViewBox",
+            active: false,
+          },
+        ],
+      },
+    }),
   ].filter(Boolean),
   resolve: {
     alias: {

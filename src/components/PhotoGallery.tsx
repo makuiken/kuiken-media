@@ -13,6 +13,8 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
+import OptimizedImage from "./OptimizedImage";
+import { transformImageUrl } from "../utils/imageTransform";
 
 interface GalleryItem {
   title: string;
@@ -116,15 +118,18 @@ const PhotoGallery = () => {
                         {/* Image container */}
                         <div className="relative rounded-lg overflow-hidden aspect-[3/4]">
                           <div className="absolute inset-[1px] bg-zinc-900 rounded-lg overflow-hidden">
-                            <img
-                              src={displayUrl}
+                            <OptimizedImage
+                              src={transformImageUrl(displayUrl, {
+                                width: 800,
+                                quality: 75,
+                                format: "webp",
+                              })}
                               alt={item.title}
-                              loading="lazy"
-                              className={`w-full h-full transition-transform duration-700 group-hover:scale-105 ${
-                                item.orientation === "horizontal"
-                                  ? "object-cover"
-                                  : "object-contain"
-                              }`}
+                              width={800}
+                              height={600}
+                              priority={index < 2}
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              className="w-full h-full object-cover transition-opacity duration-300"
                             />
 
                             {/* Content overlay */}
