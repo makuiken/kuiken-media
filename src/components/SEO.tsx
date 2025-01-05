@@ -5,6 +5,20 @@ interface SEOProps {
   description: string;
   image?: string;
   url?: string;
+  canonical?: string;
+  openGraph?: {
+    type: string;
+    locale: string;
+    url: string;
+    title: string;
+    description: string;
+    images: {
+      url: string;
+      width: number;
+      height: number;
+      alt: string;
+    }[];
+  };
 }
 
 const SEO = ({ title, description, image, url }: SEOProps) => {
