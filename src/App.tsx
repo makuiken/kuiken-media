@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import Privacy from "./pages/Privacy";
-import Terms from "./pages/terms";
+import Terms from "./pages/Terms";
 
 function App() {
   return (
