@@ -1,10 +1,43 @@
 import { motion } from "framer-motion";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+import { useState, FormEvent } from "react";
 
 const ContactSection = () => {
   const [contactRef, contactVisible] = useIntersectionObserver({
     threshold: 0.1,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    const form = e.target as HTMLFormElement;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data as any).toString(),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        form.reset();
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <motion.section
@@ -106,12 +139,17 @@ const ContactSection = () => {
             name="project-inquiry"
             method="POST"
             data-netlify="true"
+            onSubmit={handleSubmit}
             className="space-y-4 text-left"
           >
             <input
               type="hidden"
               name="form-name"
               value="project-inquiry"
+            />
+            <input
+              type="hidden"
+              name="bot-field"
             />
 
             <div>
@@ -165,13 +203,26 @@ const ContactSection = () => {
               />
             </div>
 
+            {submitStatus === "success" && (
+              <div className="text-green-500 text-sm">
+                Thank you! Your message has been sent successfully.
+              </div>
+            )}
+
+            {submitStatus === "error" && (
+              <div className="text-red-500 text-sm">
+                Something went wrong. Please try again or email us directly.
+              </div>
+            )}
+
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="w-full px-6 py-3 text-black font-semibold bg-amber-500 rounded-lg transition-all duration-300 hover:bg-amber-400 transform hover:shadow-lg hover:shadow-amber-500/20"
+              disabled={isSubmitting}
+              className="w-full px-6 py-3 text-black font-semibold bg-amber-500 rounded-lg transition-all duration-300 hover:bg-amber-400 transform hover:shadow-lg hover:shadow-amber-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Send Message
+              {isSubmitting ? "Sending..." : "Send Message"}
             </motion.button>
           </form>
         </motion.div>
