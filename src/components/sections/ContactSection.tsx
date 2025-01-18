@@ -15,7 +15,7 @@ const ContactSection = () => {
       id="contact"
       className="py-12 lg:py-20 bg-gradient-to-b from-black to-zinc-900"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,17 +45,17 @@ const ContactSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-8"
+          className="flex items-center justify-center gap-4 mb-8"
         >
           <motion.a
-            whileHover={{ scale: 1.05, y: -4 }}
+            whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
             href="mailto:kuikenmedia@gmail.com"
-            className="inline-flex items-center w-full sm:w-auto px-4 sm:px-8 py-2 sm:py-4 text-sm sm:text-lg font-semibold bg-gradient-to-r from-amber-500 to-amber-400 text-black rounded-lg transition-all duration-300 hover:from-amber-400 hover:to-amber-300 transform hover:shadow-lg hover:shadow-amber-500/20 justify-center"
+            className="p-3 rounded-full bg-zinc-900/80 border border-zinc-800 hover:border-amber-500/50 transition-colors duration-300"
+            aria-label="Email us"
           >
-            Email
             <svg
-              className="w-4 h-4 sm:w-5 sm:h-5 ml-2"
+              className="w-6 h-6 text-amber-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -64,20 +64,20 @@ const ContactSection = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
               />
             </svg>
           </motion.a>
 
           <motion.a
-            whileHover={{ scale: 1.05, y: -4 }}
+            whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
             href="tel:+18622934078"
-            className="inline-flex items-center w-full sm:w-auto px-4 sm:px-8 py-2 sm:py-4 text-sm sm:text-lg font-semibold bg-gradient-to-r from-sky-500 to-sky-400 text-black rounded-lg transition-all duration-300 hover:from-sky-400 hover:to-sky-300 transform hover:shadow-lg hover:shadow-sky-500/20 justify-center"
+            className="p-3 rounded-full bg-zinc-900/80 border border-zinc-800 hover:border-sky-500/50 transition-colors duration-300"
+            aria-label="Call us"
           >
-            Message
             <svg
-              className="w-4 h-4 sm:w-5 sm:h-5 ml-2"
+              className="w-6 h-6 text-sky-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -90,6 +90,90 @@ const ContactSection = () => {
               />
             </svg>
           </motion.a>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="bg-zinc-900/50 backdrop-blur-sm p-6 rounded-xl border border-zinc-800/50 shadow-xl"
+        >
+          <h3 className="text-xl font-semibold mb-6 text-left">
+            Tell us about your project
+          </h3>
+          <form
+            name="project-inquiry"
+            method="POST"
+            data-netlify="true"
+            className="space-y-4 text-left"
+          >
+            <input
+              type="hidden"
+              name="form-name"
+              value="project-inquiry"
+            />
+
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-300 mb-1"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                required
+                className="w-full px-4 py-2 bg-black/30 border border-zinc-700 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-200 text-white placeholder-gray-500"
+                placeholder="Your name"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-300 mb-1"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                className="w-full px-4 py-2 bg-black/30 border border-zinc-700 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-200 text-white placeholder-gray-500"
+                placeholder="your@email.com"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium text-gray-300 mb-1"
+              >
+                Project Details
+              </label>
+              <textarea
+                name="message"
+                id="message"
+                required
+                rows={4}
+                className="w-full px-4 py-2 bg-black/30 border border-zinc-700 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-200 text-white placeholder-gray-500"
+                placeholder="Tell us about your project..."
+              />
+            </div>
+
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              type="submit"
+              className="w-full px-6 py-3 text-black font-semibold bg-amber-500 rounded-lg transition-all duration-300 hover:bg-amber-400 transform hover:shadow-lg hover:shadow-amber-500/20"
+            >
+              Send Message
+            </motion.button>
+          </form>
         </motion.div>
       </div>
     </motion.section>

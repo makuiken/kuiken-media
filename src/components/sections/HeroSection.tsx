@@ -27,7 +27,7 @@ const HeroSection = () => {
               transition={{ duration: 1.2, delay: 0.2 }}
               className="hero-title relative text-4xl sm:text-6xl lg:text-8xl font-bold tracking-tight text-sky-500"
             >
-              KUIKEN MEDIA
+              <span className="text-white font-thin">KUIKEN</span> MEDIA
             </motion.h1>
 
             <motion.p

@@ -23,11 +23,6 @@ const SocialLinks = ({ className }: SocialLinksProps) => {
       label: "Youtube",
     },
     {
-      icon: <TiktokIcon size={20} />,
-      href: "https://www.tiktok.com/Kuiken_media",
-      label: "TikTok",
-    },
-    {
       icon: <Linkedin size={20} />,
       href: "https://www.linkedin.com/in/caleb-kuiken-a83b59237/",
       label: "LinkedIn",

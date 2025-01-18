@@ -53,9 +53,16 @@ const Navigation = () => {
           <div className="flex-shrink-0">
             <Link
               to="/"
-              className="text-white text-xl font-bold hover:text-sky-500 transition-colors"
+              className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             >
-              KUIKEN MEDIA
+              <img
+                src="/logo.svg"
+                alt="Kuiken Media"
+                className="h-8 w-auto"
+              />
+              <span className="text-white text-xl font-extrabold">
+                <span className="font-normal">KUIKEN</span> MEDIA
+              </span>
             </Link>
           </div>
 
