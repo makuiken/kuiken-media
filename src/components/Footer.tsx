@@ -11,7 +11,7 @@ const Footer = () => {
           <motion.a
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            href="https://www.instagram.com/kuikenmedia/"
+            href="https://www.instagram.com/kuiken_media/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-amber-500 transition-colors"
