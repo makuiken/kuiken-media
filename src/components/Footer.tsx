@@ -93,7 +93,7 @@ const Footer = () => {
         <div className="text-center text-xs">
           <motion.a
             whileHover={{ scale: 1.05 }}
-            href="https://micahkuiken.dev"
+            href="https://montague-design.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-500 hover:text-sky-400 transition-colors inline-flex items-center"
